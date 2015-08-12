@@ -1,7 +1,7 @@
 # snInfiniteScroll
 
-[![Build Status](https://travis-ci.org/thisissoon/sn-infinite-scroll.svg?branch=master)](https://travis-ci.org/thisissoon/sn-infinite-scroll)
-[![Coverage Status](https://coveralls.io/repos/thisissoon/sn-infinite-scroll/badge.svg)](https://coveralls.io/r/thisissoon/sn-infinite-scroll)
+[![Build Status](https://travis-ci.org/thisissoon/angular-infinite-scroll.svg?branch=master)](https://travis-ci.org/thisissoon/angular-infinite-scroll)
+[![Coverage Status](https://coveralls.io/repos/thisissoon/angular-infinite-scroll/badge.svg)](https://coveralls.io/github/thisissoon/angular-infinite-scroll)
 
 Simple, lightweight infinite scrolling for Angular, with no other dependencies.
 

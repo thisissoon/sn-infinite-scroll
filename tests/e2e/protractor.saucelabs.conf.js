@@ -30,7 +30,7 @@ exports.config = {
     "selenium-version": "2.46.0",
     "chromedriver-version": "2.14",
     "platform": "Windows 8.1",
-    "screenResolution": "1280x1024"
+    "screenResolution": "1024x768"
   }, {
     "browserName": "firefox",
     "tunnel-identifier": process.env.TRAVIS_JOB_NUMBER,
@@ -56,7 +56,8 @@ exports.config = {
     "name":  pkg.name + " (IE11: Win 8.1) Build: " + process.env.TRAVIS_BUILD_NUMBER,
     "version": "11",
     "selenium-version": "2.46.0",
-    "platform": "Windows 8.1"
+    "platform": "Windows 8.1",
+    "screenResolution": "1024x768"
   }, {
     "browserName": "internet explorer",
     "tunnel-identifier": process.env.TRAVIS_JOB_NUMBER,
@@ -64,7 +65,8 @@ exports.config = {
     "name":  pkg.name + " (IE10: Win 8) Build: " + process.env.TRAVIS_BUILD_NUMBER,
     "version": "10",
     "selenium-version": "2.46.0",
-    "platform": "Windows 8"
+    "platform": "Windows 8",
+    "screenResolution": "1024x768"
   }, {
     "browserName": "chrome",
     "tunnel-identifier": process.env.TRAVIS_JOB_NUMBER,

@@ -5,11 +5,10 @@
 describe("sn.infiniteScroll", function() {
 
     var scrollTo = function scrollTo (y) {
-        return "document.getElementsByClassName('infinite-scroll')[0].scrollTop =" + y;
+        return "document.querySelector('.infinite-scroll').scrollTop =" + y;
     };
 
     beforeEach(function() {
-        browser.driver.manage().window().setSize(1024, 768);
         browser.get("http://127.0.0.1:8000/");
         browser.waitForAngular();
         browser.driver.sleep(1000);

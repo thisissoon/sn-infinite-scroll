@@ -26,32 +26,36 @@ exports.config = {
     "tunnel-identifier": process.env.TRAVIS_JOB_NUMBER,
     "build": process.env.TRAVIS_BUILD_NUMBER,
     "name":  pkg.name + " (Chrome: Linux) Build: " + process.env.TRAVIS_BUILD_NUMBER,
-    "version": "39",
-    "selenium-version": "2.43.1",
-    "platform": "Linux"
+    "version": "43.0",
+    "selenium-version": "2.46.0",
+    "chromedriver-version": "2.14",
+    "platform": "Windows 8.1",
+    "screenResolution": "1280x1024"
   }, {
     "browserName": "firefox",
     "tunnel-identifier": process.env.TRAVIS_JOB_NUMBER,
     "build": process.env.TRAVIS_BUILD_NUMBER,
     "name":  pkg.name + " (FF: Linux) Build: " + process.env.TRAVIS_BUILD_NUMBER,
-    "version": "34",
-    "selenium-version": "2.43.1",
-    "platform": "Linux"
+    "version": "39.0",
+    "selenium-version": "2.46.0",
+    "platform": "Linux",
+    "screenResolution": "1024x768"
   }, {
     "browserName": "safari",
     "tunnel-identifier": process.env.TRAVIS_JOB_NUMBER,
     "build": process.env.TRAVIS_BUILD_NUMBER,
     "name":  pkg.name + " (Safari: OS X 10.10) Build: " + process.env.TRAVIS_BUILD_NUMBER,
     "version": "8",
-    "selenium-version": "2.43.1",
-    "platform": "OS X 10.10"
+    "selenium-version": "2.44.0",
+    "platform": "OS X 10.10",
+    "screenResolution": "1024x768"
   }, {
     "browserName": "internet explorer",
     "tunnel-identifier": process.env.TRAVIS_JOB_NUMBER,
     "build": process.env.TRAVIS_BUILD_NUMBER,
     "name":  pkg.name + " (IE11: Win 8.1) Build: " + process.env.TRAVIS_BUILD_NUMBER,
     "version": "11",
-    "selenium-version": "2.43.1",
+    "selenium-version": "2.46.0",
     "platform": "Windows 8.1"
   }, {
     "browserName": "internet explorer",
@@ -59,7 +63,7 @@ exports.config = {
     "build": process.env.TRAVIS_BUILD_NUMBER,
     "name":  pkg.name + " (IE10: Win 8) Build: " + process.env.TRAVIS_BUILD_NUMBER,
     "version": "10",
-    "selenium-version": "2.43.1",
+    "selenium-version": "2.46.0",
     "platform": "Windows 8"
   }, {
     "browserName": "chrome",
@@ -71,7 +75,8 @@ exports.config = {
     "platformName": "Android",
     "appiumVersion": "1.3.4",
     "deviceName": "Android Emulator",
-    "device-orientation": "portrait"
+    "device-orientation": "portrait",
+    "selenium-version": "2.46.0"
   }, {
     "browserName": "safari",
     "tunnel-identifier": process.env.TRAVIS_JOB_NUMBER,
@@ -83,7 +88,8 @@ exports.config = {
     "appiumVersion": "1.3.4",
     "platform": "iOS",
     "deviceName": "iPhone Simulator",
-    "device-orientation": "portrait"
+    "device-orientation": "portrait",
+    "selenium-version": "2.46.0"
   }],
 
   // ----- More information for your tests ----

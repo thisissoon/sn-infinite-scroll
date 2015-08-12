@@ -11,7 +11,7 @@ describe("sn.infiniteScroll", function() {
     beforeEach(function() {
         browser.get("http://127.0.0.1:8000/");
         browser.waitForAngular();
-        browser.driver.sleep(1000);
+        browser.driver.sleep(2000);
     });
 
     it("should load more pages on scroll to bottom of list (8 items total)", function() {
@@ -21,7 +21,7 @@ describe("sn.infiniteScroll", function() {
 
         // 2nd page
         browser.executeScript(scrollTo(2000));
-        browser.driver.sleep(1000);
+        browser.driver.sleep(2000);
 
         expect(element.all(by.repeater("user in users")).count()).toEqual(8);
     });
@@ -31,7 +31,7 @@ describe("sn.infiniteScroll", function() {
         // 3rd page
         browser.executeScript(scrollTo(2000));
         browser.executeScript(scrollTo(4000));
-        browser.driver.sleep(1000);
+        browser.driver.sleep(2000);
 
         expect(element.all(by.repeater("user in users")).count()).toEqual(12);
 
@@ -43,7 +43,7 @@ describe("sn.infiniteScroll", function() {
         browser.executeScript(scrollTo(2000));
         browser.executeScript(scrollTo(4000));
         browser.executeScript(scrollTo(6000));
-        browser.driver.sleep(1000);
+        browser.driver.sleep(2000);
 
         expect(element.all(by.repeater("user in users")).count()).toEqual(12);
     });

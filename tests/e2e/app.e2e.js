@@ -7,11 +7,12 @@
  * @module sn.infiniteScroll.e2e
  * @author SOON_
  */
-angular.module("sn.infiniteScroll.e2e", ["sn.infiniteScroll", "ngMockE2E"])
+angular.module("sn.infiniteScroll.e2e", ["sn.infiniteScroll.demo", "ngMockE2E"])
     .run([
         "$httpBackend",
         function ($httpBackend) {
 
+            $httpBackend.whenGET(/users.*/).respond(200, { items: [{ name: "Micheal Mariah" },{ name: "Ste Letha" },{ name: "Rachel Lorena" },{ name: "Annabella Abby" }], total: 10, _pagination: { total: 3, current: 1, limit: 4 }});
             $httpBackend.whenGET(/partials\/.*/).passThrough();
 
         }

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!-- build:[ng-app]:e2e myApp.e2e -->
-<!--[if lt IE 8]>      <html lang="en" ng-app="sn.infiniteScroll" ng-strict-di class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="sn.infiniteScroll" ng-strict-di class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="sn.infiniteScroll" ng-strict-di class="no-js"> <!--<![endif]-->
+<!-- build:[ng-app]:e2e sn.infiniteScroll.e2e -->
+<!--[if lt IE 8]>      <html lang="en" ng-app="sn.infiniteScroll.demo" ng-strict-di class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="sn.infiniteScroll.demo" ng-strict-di class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="sn.infiniteScroll.e2e" ng-strict-di class="no-js"> <!--<![endif]-->
 <!-- /build -->
 <head>
     <meta charset="utf-8">
@@ -40,11 +40,24 @@
     <meta name="msapplication-TileImage" content="img/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
+    <style>
+        .infinite-scroll {
+            padding: 20px;
+        }
+        .user {
+            height: 150px;
+            border-bottom: 1px solid black;
+        }
+    </style>
+
 </head>
-<body>
+<body ng-controller="DemoCtrl">
 
-    <div>
-
+    <div class="infinite-scroll" sn-infinite-scroll="loadMore()" data-disabled="page.loading || page.total <= page.pages">
+        <h2>Infinite list of users</h2>
+        <div class="user" ng-repeat="user in users">
+            <p>{{ user.name }}</p>
+        </div>
     </div>
 
 
@@ -68,10 +81,57 @@
     <script src="js/config/config.js"></script>
     <script src="js/snInfiniteScroll.js"></script>
     <!-- /build -->
+
+    <script>
+        /**
+         * @module   sn.infiniteScroll.demo
+         * @author   SOON_
+         */
+        angular.module("sn.infiniteScroll.demo", ["sn.infiniteScroll"])
+            .controller("DemoCtrl", [
+                "$scope",
+                "$http",
+                function ($scope, $http) {
+
+                    $scope.users = [];
+
+                    $http.get("/users")
+                        .then(function (response) {
+                            $scope.users = response.data.items;
+                            $scope.page.total = response.data._pagination.total;
+                        });
+
+                    $scope.page = {
+                        loading: false,
+                        pages: 1
+                    };
+
+                    $scope.loadMore = function loadMore () {
+
+                        $scope.page.loading = true;
+                        $scope.page.pages++;
+
+                        $http.get("/users")
+                            .then(function(response){
+                                $scope.users = $scope.users.concat(response.data.items);
+
+                                $scope.page.loading = false;
+                                $scope.page.total = response.data._pagination.total || 0;
+                            });
+                    };
+
+                }
+            ]);
+    </script>
     <!--<![endif]-->
 
     <!-- build:js:e2e inline components/angular-mocks/angular-mocks.js --><!-- /build -->
     <!-- build:js:e2e inline ../tests/e2e/app.e2e.js --><!-- /build -->
+
+    <!-- build:remove -->
+    <script src="components/angular-mocks/angular-mocks.js"></script>
+    <script src="../tests/e2e/app.e2e.js"></script>
+    <!-- /build -->
 
 </body>
 </html>

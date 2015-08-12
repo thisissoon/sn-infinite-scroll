@@ -14,6 +14,7 @@ install:
 script:
   - grunt test:development
   - grunt test
+  - grunt e2e --ci
 after_success:
   - ./node_modules/coveralls/bin/coveralls.js < coverage/lcov.info
 addons:

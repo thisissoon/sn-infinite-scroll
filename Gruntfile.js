@@ -252,6 +252,14 @@ module.exports = function (grunt) {
                     src: ["**/*", "*"],
                     dest: "<%= config.outputDir %>data/"
                 }]
+            },
+            e2e: {
+                files: [{
+                    expand: true,
+                    cwd: "./app/components",
+                    src: ["angular/angular.js"],
+                    dest: "<%= config.outputDir %>components/"
+                }]
             }
         },
 

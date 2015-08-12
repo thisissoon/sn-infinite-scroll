@@ -2,70 +2,50 @@
 
 /* https://github.com/angular/protractor/blob/master/docs/getting-started.md */
 
-describe("myApp", function() {
+describe("sn.infiniteScroll", function() {
 
-    describe("search", function() {
+    var scrollTo = function scrollTo (y) {
+        return "document.querySelector('.infinite-scroll').scrollTop =" + y;
+    };
 
-        beforeEach(function(){
-            browser.manage().deleteAllCookies();
-            browser.get("http://127.0.0.1:8000/");
-            browser.waitForAngular();
-            browser.driver.sleep(2000);
-        });
+    beforeEach(function() {
+        browser.get("http://127.0.0.1:8000/");
+        browser.waitForAngular();
+        browser.driver.sleep(2000);
+    });
 
-        it("should automatically redirect to / when location hash/fragment is empty", function() {
-            expect(browser.getLocationAbsUrl()).toMatch("/");
-        });
+    it("should load more pages on scroll to bottom of list (8 items total)", function() {
 
-        it("should render home partial when user navigates to /", function() {
-            expect(element.all(by.css("ng-view h1")).first().getText()).toContain("Search");
-        });
+        // confirm initial state
+        expect(element.all(by.repeater("user in users")).count()).toEqual(4);
 
-        it("should search for location", function() {
-            element(by.model("location")).sendKeys("London");
-            element(by.buttonText("Submit")).click();
+        // 2nd page
+        browser.executeScript(scrollTo(2000));
+        browser.driver.sleep(2000);
 
-            browser.driver.sleep(5000);
+        expect(element.all(by.repeater("user in users")).count()).toEqual(8);
+    });
 
-            browser.driver.wait(function() {
-                return browser.driver.getCurrentUrl().then(function (url) {
-                    return /results/.test(url);
-                });
-            });
-            expect(browser.getLocationAbsUrl()).toMatch("/results");
-            expect(element.all(by.repeater("result in results")).count()).toEqual(4);
-        });
+    it("should load more pages on scroll to bottom of list (12 items total)", function() {
+
+        // 3rd page
+        browser.executeScript(scrollTo(2000));
+        browser.executeScript(scrollTo(4000));
+        browser.driver.sleep(2000);
+
+        expect(element.all(by.repeater("user in users")).count()).toEqual(12);
 
     });
 
+    it("should NOT load more pages on scroll to bottom of list", function() {
 
-    describe("results", function() {
+        // 4th page - shouldn't exist
+        browser.executeScript(scrollTo(2000));
+        browser.executeScript(scrollTo(4000));
+        browser.executeScript(scrollTo(6000));
+        browser.driver.sleep(2000);
 
-        beforeEach(function(){
-            browser.get("http://127.0.0.1:8000/results");
-            browser.waitForAngular();
-            browser.driver.sleep(2000);
-        });
-
-        it("should render results page view", function() {
-            expect(element.all(by.css("ng-view h1")).first().getText()).toContain("Results");
-            expect(element(by.css(".alert-info")).getText()).toContain("No results");
-
-        });
-
-        it("should go back to search page view", function() {
-            element(by.css("a.home")).click();
-
-            browser.driver.wait(function() {
-                return browser.driver.getCurrentUrl().then(function (url) {
-                    return /\//.test(url);
-                });
-            });
-
-            expect(browser.getLocationAbsUrl()).toMatch("/");
-
-        });
-
+        expect(element.all(by.repeater("user in users")).count()).toEqual(12);
     });
 
 });

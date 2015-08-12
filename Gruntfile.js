@@ -157,7 +157,10 @@ module.exports = function (grunt) {
                 }
             },
             production: {
-                src: ["<%= config.outputDir %>js/app.min.js", "./app/components/angular-mocks/angular-mocks.js"]
+                options: {
+                    vendor: ["<%= config.vendorFiles %>"]
+                },
+                src: ["<%= config.outputDir %><%= pkg.name %>.min.js", "./app/components/angular-mocks/angular-mocks.js"]
             }
         },
 
@@ -248,6 +251,14 @@ module.exports = function (grunt) {
                     cwd: "./app/data",
                     src: ["**/*", "*"],
                     dest: "<%= config.outputDir %>data/"
+                }]
+            },
+            e2e: {
+                files: [{
+                    expand: true,
+                    cwd: "./app/components",
+                    src: ["angular/angular.js"],
+                    dest: "<%= config.outputDir %>components/"
                 }]
             }
         },

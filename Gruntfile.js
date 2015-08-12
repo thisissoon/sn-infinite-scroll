@@ -157,7 +157,10 @@ module.exports = function (grunt) {
                 }
             },
             production: {
-                src: ["<%= config.outputDir %>js/app.min.js", "./app/components/angular-mocks/angular-mocks.js"]
+                options: {
+                    vendor: ["<%= config.vendorFiles %>"]
+                },
+                src: ["<%= config.outputDir %><%= pkg.name %>.min.js", "./app/components/angular-mocks/angular-mocks.js"]
             }
         },
 

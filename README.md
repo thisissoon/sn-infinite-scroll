@@ -224,13 +224,14 @@ correctly. Therefore, our web server needs to be serving up the application, so 
 can interact with it. To run end to end tests we first need to install protractor with global permissions. You may need to run this command with superuser privileges:
 
 ```
-npm install -g protractor
+npm install -g protractor && webdriver-manager update
 ```
 
 Once you have ensured that the development web server hosting our application is up and running
 and WebDriver is updated, you can run the end-to-end tests using the supplied grunt task:
 
 ```
+nohup webdriver-manager start &
 grunt e2e
 ```
 

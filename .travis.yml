@@ -13,8 +13,8 @@ install:
 script:
   - grunt test:development
   - grunt test
-  - nohup webdriver-manager start &
-  - grunt e2e --ci
+  # - nohup webdriver-manager start &
+  # - grunt e2e --ci
 after_success:
   - ./node_modules/coveralls/bin/coveralls.js < coverage/lcov.info
 addons:

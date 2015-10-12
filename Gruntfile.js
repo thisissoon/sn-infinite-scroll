@@ -128,25 +128,22 @@ module.exports = function (grunt) {
 
         jasmine: {
             options: {
-                specs: ["./tests/unit/**/*.js"],
+                vendor: ["<%= config.vendorFiles %>"],
+                helpers:["app/components/angular-mocks/angular-mocks.js"],
+                specs: ["tests/unit/**/*.js"],
                 keepRunner: true,
             },
             development: {
-                src: [
-                    "<%= ngconstant.options.dest %>",
-                    "<%= config.applicationFiles %>"
-                ],
+                src: ["<%= config.applicationFiles %>"],
                 options: {
-                    vendor: ["<%= config.vendorFiles %>"],
-                    helpers:["./app/components/angular-mocks/angular-mocks.js"],
                     template: require("grunt-template-jasmine-istanbul"),
                     templateOptions: {
-                        coverage: "./coverage/coverage.json",
+                        coverage: "coverage/coverage.json",
                         report: [
                             {
                                 type: "lcov",
                                 options: {
-                                    dir: "./coverage"
+                                    dir: "coverage"
                                 }
                             },
                             {
@@ -157,7 +154,7 @@ module.exports = function (grunt) {
                 }
             },
             production: {
-                src: ["<%= config.outputDir %>js/app.min.js", "./app/components/angular-mocks/angular-mocks.js"]
+                src: ["<%= config.outputDir %><%= pkg.name %>.min.js"]
             }
         },
 
